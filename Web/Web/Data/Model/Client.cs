@@ -9,7 +9,7 @@ namespace Web
     {
         public Client()
         {
-            Baskets = new HashSet<Basket>();
+            Baskets = new HashSet<Basket1>();
             Orders = new HashSet<Order>();
         }
 
@@ -23,7 +23,7 @@ namespace Web
         public DateTime DateOfReg { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        public virtual ICollection<Basket> Baskets { get; set; }
+        public virtual ICollection<Basket1> Baskets { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

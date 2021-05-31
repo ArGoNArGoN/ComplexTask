@@ -69,11 +69,11 @@
                     {
                         <li class="product-item" style="margin-top: 50px;">
                             <div class="product-item">
-                                <a href="#"><img src="img/magnit.png" class="my-img-fluid"></a>
+                                <a href="#"><img src="@item.img" class="my-img-fluid"></a>
                                 <div>
                                     <p class="card-title">@item.Name</p>
                                     <span class="price">@($"{item.Price} ₽")</span>
-                                    <a href="/Basket" class="buttonlist">В корзину</a>
+                                    <a href="/Basket" class="buttonlist" @onclick="(() => additem(item))">В корзину</a>
                                 </div>
                             </div>
                         </li>

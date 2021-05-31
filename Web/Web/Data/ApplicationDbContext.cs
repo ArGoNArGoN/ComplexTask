@@ -8,13 +8,15 @@ namespace Web.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public ApplicationDbContext() { }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<AdminMain> AdminMains { get; set; }
-        public virtual DbSet<Basket> Baskets { get; set; }
+        public virtual DbSet<Basket1> Baskets { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<DeliveryType> DeliveryTypes { get; set; }
@@ -28,29 +30,29 @@ namespace Web.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=store;Username=postgres;Password=123");
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=store;Username=postgres;Password=1234");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Russian_Russia.1251");
-
             modelBuilder.Entity<Admin>(entity =>
             {
                 entity.ToTable("admin");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Fio).HasColumnName("fio");
-
                 entity.Property(e => e.Login)
                     .IsRequired()
                     .HasColumnName("login");
 
+                entity.Property(e => e.Name).HasColumnName("name");
+
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasColumnName("password");
+
+                entity.Property(e => e.Surname).HasColumnName("surname");
             });
 
             modelBuilder.Entity<AdminMain>(entity =>
@@ -70,7 +72,7 @@ namespace Web.Data
                     .HasColumnName("password");
             });
 
-            modelBuilder.Entity<Basket>(entity =>
+            modelBuilder.Entity<Basket1>(entity =>
             {
                 entity.ToTable("Basket ");
 
@@ -78,19 +80,16 @@ namespace Web.Data
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
 
-                entity.Property(e => e.IdClient).HasColumnName("ID_Client");
-
                 entity.Property(e => e.IdOrder).HasColumnName("ID_Order");
 
                 entity.Property(e => e.IdProduct).HasColumnName("ID_Product");
 
-                entity.Property(e => e.Price).HasColumnType("money");
+                entity.Property(e => e.IdUser)
+                    .IsRequired()
+                    .HasColumnType("character varying")
+                    .HasColumnName("ID_User");
 
-                entity.HasOne(d => d.IdClientNavigation)
-                    .WithMany(p => p.Baskets)
-                    .HasForeignKey(d => d.IdClient)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_ClientBasket");
+                entity.Property(e => e.Price).HasColumnType("money");
 
                 entity.HasOne(d => d.IdOrderNavigation)
                     .WithMany(p => p.Baskets)
@@ -136,9 +135,7 @@ namespace Web.Data
 
                 entity.Property(e => e.Name).IsRequired();
 
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasColumnType("char");
+                entity.Property(e => e.Password).IsRequired();
 
                 entity.Property(e => e.Surname).IsRequired();
             });
@@ -170,9 +167,7 @@ namespace Web.Data
                     .IsRequired()
                     .HasColumnName("e-mail");
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasColumnName("name");
+                entity.Property(e => e.Name).IsRequired();
 
                 entity.Property(e => e.Nickname).HasColumnName("nickname");
 
@@ -224,17 +219,14 @@ namespace Web.Data
 
                 entity.Property(e => e.Date).HasColumnType("timestamp with time zone");
 
-                entity.Property(e => e.IdClient).HasColumnName("ID_Client");
-
                 entity.Property(e => e.IdDeliveryType).HasColumnName("ID_DeliveryType");
 
-                entity.Property(e => e.Status).IsRequired();
+                entity.Property(e => e.IdUser)
+                    .IsRequired()
+                    .HasColumnType("character varying")
+                    .HasColumnName("ID_User");
 
-                entity.HasOne(d => d.IdClientNavigation)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.IdClient)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrderClient");
+                entity.Property(e => e.Status).IsRequired();
 
                 entity.HasOne(d => d.IdDeliveryTypeNavigation)
                     .WithMany(p => p.Orders)
@@ -288,6 +280,10 @@ namespace Web.Data
                 entity.Property(e => e.IdCategory).HasColumnName("id_category");
 
                 entity.Property(e => e.IdMaster).HasColumnName("id_master");
+
+                entity.Property(e => e.img)
+                    .HasColumnType("character varying")
+                    .HasColumnName("img");
 
                 entity.Property(e => e.Name)
                     .IsRequired()

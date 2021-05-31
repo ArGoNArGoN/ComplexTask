@@ -9,7 +9,7 @@ namespace Web
     {
         public Product()
         {
-            Baskets = new HashSet<Basket>();
+            Baskets = new HashSet<Basket1>();
         }
 
         public int Id { get; set; }
@@ -22,6 +22,6 @@ namespace Web
 
         public virtual Category IdCategoryNavigation { get; set; }
         public virtual Master IdMasterNavigation { get; set; }
-        public virtual ICollection<Basket> Baskets { get; set; }
+        public virtual ICollection<Basket1> Baskets { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Components;
 
 namespace Web.Areas.Identity.Pages.Account
 {
@@ -21,6 +22,7 @@ namespace Web.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
+        public static IdentityUser MyUser { get; set; }
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager)
@@ -99,6 +101,7 @@ namespace Web.Areas.Identity.Pages.Account
                     else
                     {
                         _logger.LogInformation("Пользователь вошел");
+                        MyUser = user;
                         return LocalRedirect(returnUrl);
                     }
                 }

@@ -7882,19 +7882,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\anast\\.nuget\\packages\\": {}
+    "C:\\Users\\Qwerty\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\anast\\Documents\\GitHub\\ComplexTask\\Web\\Web\\Web.csproj",
+      "projectUniqueName": "C:\\pepos\\ComplexTaskAnanas\\Web\\Web\\Web.csproj",
       "projectName": "Web",
-      "projectPath": "C:\\Users\\anast\\Documents\\GitHub\\ComplexTask\\Web\\Web\\Web.csproj",
-      "packagesPath": "C:\\Users\\anast\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\anast\\Documents\\GitHub\\ComplexTask\\Web\\Web\\obj\\",
+      "projectPath": "C:\\pepos\\ComplexTaskAnanas\\Web\\Web\\Web.csproj",
+      "packagesPath": "C:\\Users\\Qwerty\\.nuget\\packages\\",
+      "outputPath": "C:\\pepos\\ComplexTaskAnanas\\Web\\Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\anast\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Qwerty\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7975,7 +7975,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
